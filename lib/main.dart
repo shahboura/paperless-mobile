@@ -399,10 +399,12 @@ class _GoRouterShellState extends State<GoRouterShell> {
                 Locale('tr'),
                 Locale('it'),
               ],
-              localeResolutionCallback: (locale, supportedLocales) {
-                if (locale == null) {
+              localeListResolutionCallback: (locales, supportedLocales) {
+                if (locales == null || locales.isEmpty) {
                   return supportedLocales.first;
                 }
+
+                final locale = locales.first;
 
                 final exactMatch = supportedLocales
                     .where((element) =>
